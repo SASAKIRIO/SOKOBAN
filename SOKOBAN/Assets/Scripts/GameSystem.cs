@@ -64,6 +64,10 @@ public class GameSystem : MonoBehaviour
     private GameObject[] Goals;
     private int ClearIndex=0;//クリア状態の箱の個数
 
+    //Audio周り
+    private AudioSource SEAudioSource;
+    [SerializeField] private AudioClip SE_Move;
+    [SerializeField] private AudioClip SE_Clear;
     enum OBJ_TYPE
     {
         /// <summary>
@@ -109,6 +113,8 @@ public class GameSystem : MonoBehaviour
         Goals = GameObject.FindGameObjectsWithTag("Goal");//全ゴールの配列
 
         ClearIndex = 0;
+
+        SEAudioSource = GetComponent<AudioSource>();
     } 
 
 
@@ -290,6 +296,12 @@ public class GameSystem : MonoBehaviour
             {
                 PlayerPos_i--;//プレイヤーの座標を移動させて。
                 PlayerPosReload();//更新する。 
+                try
+                {
+                    SEAudioSource.PlayOneShot(SE_Move);
+                }
+                catch { }
+
             }
 
             if (_isBoxMoveOK[(int)PLAYER_MODEL.UP_MODEL])
@@ -308,6 +320,11 @@ public class GameSystem : MonoBehaviour
             {
                 PlayerPos_i++;//プレイヤーの座標を移動させて。
                 PlayerPosReload();//更新する。
+                try
+                {
+                    SEAudioSource.PlayOneShot(SE_Move);
+                }
+                catch { }
             }
 
             if (_isBoxMoveOK[(int)PLAYER_MODEL.DOWN_MODEL])
@@ -326,6 +343,11 @@ public class GameSystem : MonoBehaviour
             {
                 PlayerPos_j--;//プレイヤーの座標を移動させて
                 PlayerPosReload();//更新する。
+                try
+                {
+                    SEAudioSource.PlayOneShot(SE_Move);
+                }
+                catch { }
             }
 
             if (_isBoxMoveOK[(int)PLAYER_MODEL.LEFT_MODEL])
@@ -345,6 +367,11 @@ public class GameSystem : MonoBehaviour
                 //Stackin();
                 PlayerPos_j++;//プレイヤーの座標を移動させて
                 PlayerPosReload() ;//更新する。
+                try
+                {
+                    SEAudioSource.PlayOneShot(SE_Move);
+                }
+                catch { }
             }
 
             if (_isBoxMoveOK[(int)PLAYER_MODEL.RIGHT_MODEL])
@@ -401,6 +428,7 @@ public class GameSystem : MonoBehaviour
         {
             Debug.Log("Game Clear");
             isGameClear = true;
+            SEAudioSource.PlayOneShot(SE_Clear);
             MapGeneration.Stage++;
         }
         else//リセット
