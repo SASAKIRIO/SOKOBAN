@@ -145,10 +145,10 @@ public class GameSystem : MonoBehaviour
         RightPlan = MapArray[PlayerPos_i, PlayerPos_j + 1];
 
         //プレイヤーを中心として２マス離れた周囲４マスの取得
-        UpScheme = MapArray[PlayerPos_i - 2, PlayerPos_j];
-        DownScheme = MapArray[PlayerPos_i + 2, PlayerPos_j];
-        LeftScheme = MapArray[PlayerPos_i, PlayerPos_j - 2];
-        RightScheme = MapArray[PlayerPos_i, PlayerPos_j + 2];
+        try { UpScheme = MapArray[PlayerPos_i - 2, PlayerPos_j]; } catch { }
+        try {DownScheme = MapArray[PlayerPos_i + 2, PlayerPos_j]; } catch { }
+        try {LeftScheme = MapArray[PlayerPos_i, PlayerPos_j - 2]; } catch { }
+        try {RightScheme = MapArray[PlayerPos_i, PlayerPos_j + 2]; } catch { }
     }
 
 

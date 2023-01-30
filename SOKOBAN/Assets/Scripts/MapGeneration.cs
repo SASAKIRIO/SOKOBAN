@@ -78,6 +78,19 @@ public class MapGeneration : MonoBehaviour
         {1,1,1,1,1,1,1,1,1,1 }
     };
 
+    private int[,] MAP_4th = new int[9, 10]
+{
+        {1,1,1,1,1,1,1,1,1,1 },
+        {1,1,1,1,1,1,1,1,1,1 },
+        {1,1,2,0,0,0,0,0,1,1 },
+        {1,1,0,1,0,0,1,0,1,1 },
+        {1,1,0,0,0,0,0,0,1,1 },
+        {1,1,1,1,1,1,0,0,1,1 },
+        {1,1,0,3,0,0,3,0,1,1 },
+        {1,1,0,0,4,4,0,0,1,1 },
+        {1,1,1,1,1,1,1,1,1,1 }
+};
+
     [SerializeField] public static int Stage;
 
     [AddArrayName(new string[] {"プレイヤーのi座標","プレイヤーのj座標"})]
@@ -101,13 +114,16 @@ public class MapGeneration : MonoBehaviour
         switch (Stage)
         {
             case 1:
-                MAP = MAP_1st;
+                MAP = MAP_4th;
                 break;
             case 2:
                 MAP = MAP_2nd;
                 break;
             case 3:
                 MAP = MAP_3rd;
+                break;
+            case 4:
+                MAP = MAP_4th;
                 break;
             default:
                 Stage = 1;
